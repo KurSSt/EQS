@@ -374,24 +374,6 @@ namespace EqSoft
         //https://pl.wikipedia.org/wiki/Deuteranomalia
         private void SetDeuteronormaly()
         {
-            //SetScreenDefault();
-            //previousFilter = EpreviousFilter.deuteranomaly;
-            //float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f, multiplicator = 1;
-            //var magEffectInvert = new NativeMethods.MAGCOLOREFFECT
-            //{
-            //    transform = new[]
-            //    {
-            //        0.8f,    0.4f,    0.0f,  0,  0,
-            //        0.2f,    0.7f,    0.1f,  0,  0,
-            //        0,    0,    1,  0,  0,
-            //        0,    0,    0,  0,  0,
-            //        0,    0,    0,  0,  0.0f
-            //    }
-            //};
-
-            //NativeMethods.MagInitialize();
-            //NativeMethods.MagSetFullscreenColorEffect(ref magEffectInvert);
-
             SetScreenDefault();
             previousFilter = EpreviousFilter.deuteranomaly;
             float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f, multiplicator = 1;
@@ -421,8 +403,8 @@ namespace EqSoft
             {
                 transform = new[]
                 {
-                    0.71f,  0.184f,   0,  0.0f,  0.0f,
-                    0.4f,  1,   0,  0.5f,  0.0f,
+                    0.5f,  0,   0,  0.0f,  0.0f,
+                    0.5f,  1,   0,  0.0f,  0.0f,
                     0,  0,   1,  0.0f,  0.0f,
                     0,  0,   0,  0.0f,  0.0f,
                     0,  0,   0,  0.0f,  0.0f
@@ -443,11 +425,11 @@ namespace EqSoft
             {
                 transform = new[]
                 {
-                    0.51f,         0.52f,        0.08f,      0.0f,  0.0f,
-                    0.88f,   0.821f,            0.08f,    0.0f,  0.0f,
-                    0.012f,    0.075f,       0.85f,     0.0f,  0.0f,
-                    0.0f,       0.0f,       0.0f,       0.0f,  0.0f,
-                    0,       0,       0,       0.0f,  0.0f
+                    0,  0,   0,  0.0f,  0.0f,
+                    1,  1,   0,  0.0f,  0.0f,
+                    0,  0,   1,  0.0f,  0.0f,
+                    0,  0,   0,  0.0f,  0.0f,
+                    0,  0,   0,  0.0f,  0.0f
                 }
             };
 
@@ -485,11 +467,11 @@ namespace EqSoft
             {
                 transform = new[]
                 {
-                    1,         0,        0,      0.0f,  0.0f,
-                    0,   1,            1,    0.0f,  0.0f,
-                    0,    0,       0,     0.0f,  0.0f,
-                    0.0f,       0.0f,       0.0f,       0.0f,  0.0f,
-                    0,       0,       0,       0.0f,  0.0f
+                    1,         0,       0,      0,  0.0f,
+                    0,         1,       1,      0,  0.0f,
+                    0,         0,       0,      0,  0.0f,
+                    0,         0,       0,      0,  0.0f,
+                    0,         0,       0,      0,  0.0f
                 }
             };
 
@@ -506,11 +488,11 @@ namespace EqSoft
             {
                 transform = new[]
                 {
-                    1,         0,        0,      0.0f,  0.0f,
-                    0.38f,   1,            0.396f,    0.0f,  0.0f,
-                    0,    0.035f,       0.58f,     0.0f,  0.0f,
-                    0.0f,       0.0f,       0.0f,       0.0f,  0.0f,
-                    0,       0,       0,       0.0f,  0.0f
+                    1,         0,       0,      0,  0.0f,
+                    0,         1,       0.5f,   0,  0.0f,
+                    0,         0,       0.5f,   0,  0.0f,
+                    0,         0,       0,      0,  0.0f,
+                    0,         0,       0,      0,  0.0f
                 }
             };
 
