@@ -1,0 +1,1 @@
+1.Print Image Location = ^D:\EQS\EQSoft_Testing\EqSoft\bin\Debug^2. Red Color Custom Value = ^Blue^3. Green Color Custom Value = ^Red^4. Blue Color Custom Value = ^#00FF40
