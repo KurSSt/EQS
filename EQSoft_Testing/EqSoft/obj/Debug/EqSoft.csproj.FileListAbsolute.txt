@@ -1,0 +1,10 @@
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\bin\Debug\EqSoft.exe.config
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\bin\Debug\EqSoft.exe
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\bin\Debug\EqSoft.pdb
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\obj\Debug\EqSoft.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\obj\Debug\EqSoft.Properties.Resources.resources
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\obj\Debug\EqSoft.csproj.GenerateResource.cache
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\obj\Debug\EqSoft.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\obj\Debug\EqSoft.exe
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\obj\Debug\EqSoft.pdb
+C:\Users\Admin\source\repos\EQSoft_Testing\EqSoft\obj\Debug\EqSoft.FQS.resources
