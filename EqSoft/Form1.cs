@@ -32,6 +32,7 @@ namespace EqSoft
         string optionsPath = Application.StartupPath + @"\options.txt";
         public Color RedCustomColorValue, GreenCustomColorValue, BlueCustomColorValue;
         PictureBox[] screensPictureBox = new PictureBox[6];
+        Form2 customFilter;
 
         #endregion
 
@@ -328,7 +329,7 @@ namespace EqSoft
 
         private void OpenCustomFilterForm()
         {
-            Form2 customFilter = new Form2(this, optionsPath, printImagePath);
+            customFilter = new Form2(this, optionsPath, printImagePath);
             this.Hide();
             customFilter.ShowDialog();
         }
@@ -341,6 +342,10 @@ namespace EqSoft
         private void Screen_Click(object sender, EventArgs e)
         {
             OpenCustomFilterForm();
+        }
+
+        private void FQS_FormClosed(object sender, FormClosedEventArgs e)
+        {
         }
 
         private void setCustomFilterToolStripMenuItem_Click(object sender, EventArgs e)

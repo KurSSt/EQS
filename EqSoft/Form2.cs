@@ -133,7 +133,7 @@ namespace EqSoft
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            previousForm.Close();
+            previousForm.Show();
         }
     }
 }

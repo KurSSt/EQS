@@ -746,6 +746,7 @@
             this.MinimumSize = new System.Drawing.Size(935, 650);
             this.Name = "FQS";
             this.Text = "EQS";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FQS_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.FQS_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
