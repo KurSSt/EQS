@@ -25,14 +25,146 @@ namespace EqSoft
 
         #region Private Variables
 
-        private Hotkeys.GlobalHotkey F1Key, F2Key, F3Key, F4Key, F5Key, F6Key, F7Key, F8Key, F9Key, PrintScreenKey;
-        private Int32 F1Id = 1, F2Id = 2, F3Id = 3, F4Id = 4, F5Id = 5, F6Id = 6, F7Id = 7, F8Id = 8, F9Id = 9, PrintScreenId = 13;
+        private Hotkeys.GlobalHotkey F1Key, F2Key, F3Key, F4Key, F5Key, F6Key, F7Key, F8Key, F9Key, PrintScreenKey, PlusKey, MinusKey;
+        private Int32 F1Id = 1, F2Id = 2, F3Id = 3, F4Id = 4, F5Id = 5, F6Id = 6, F7Id = 7, F8Id = 8, F9Id = 9, PrintScreenId = 13, PlusId = 10, MinusId = 11;
         private EpreviousFilter previousFilter;
         private string printImagePath = Application.StartupPath;
         string optionsPath = Application.StartupPath + @"\options.txt";
         public Color RedCustomColorValue, GreenCustomColorValue, BlueCustomColorValue;
         PictureBox[] screensPictureBox = new PictureBox[6];
         Form2 customFilter;
+        int waveLenghtSeverity = 0;
+
+
+
+        private Dictionary<int, float[]> protanomalyMatrixDictionary = new Dictionary<int, float[]>
+        #region
+        {
+            {
+                0,
+                new[]
+                {
+                    1,  0,   0,  0.0f,  0.0f,
+                    0,  1,   0,  0.0f,  0.0f,
+                    0,  0,   1,  0.0f,  0.0f,
+                    0,  0,   0,  0.0f,  0.0f,
+                    0,  0,   0,  0.0f,  0.0f
+                }
+            },
+            {
+                2,
+                new[]
+                {
+                    0.856167f, 0.029342f,  -0.002880f, 0.0f,  0.0f,
+                    0.182038f, 0.955115f,  -0.001563f, 0.0f,  0.0f,
+                     -0.038205f, 0.015544f,  1.004443f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                4,
+                new[]
+                {
+                    0.734766f,  0.051840f,  -0.004928f,   0.0f,  0.0f,
+                    0.334872f,  0.919198f,  -0.004209f,  0.0f,  0.0f,
+                    -0.069637f,  0.028963f,  1.009137f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                6,
+                new[]
+                {
+                    0.630323f, 0.069181f,   -0.006308f, 0.0f,  0.0f,
+                    0.465641f,  0.890046f,  -0.007724f, 0.0f,  0.0f,
+                    -0.095964f,  0.040773f,  1.014032f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                8,
+                new[]
+                {
+                    0.539009f,  0.082546f,  -0.007136f,  0.0f,  0.0f,
+                    0.579343f,  0.866121f,  -0.011959f,  0.0f,  0.0f,
+                    -0.118352f,  0.051332f,  1.019095f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                10,
+                new[]
+                {
+                    0.458064f,  0.092785f,  -0.007494f,  0.0f,  0.0f,
+                    0.679578f,  0.846313f,  -0.016807f,  0.0f,  0.0f,
+                    -0.137642f,  0.060902f,  1.024301f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                12,
+                new[]
+                {
+                    0.385450f,  0.100526f,  -0.007442f,  0.0f,  0.0f,
+                    0.769005f,  0.829802f,  -0.022190f,  0.0f,  0.0f,
+                    -0.154455f,  0.069673f,  1.029632f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                14,
+                new[]
+                {
+                    0.319627f,  0.106241f,  -0.007025f,  0.0f,  0.0f,
+                    0.849633f,  0.815969f,  -0.028051f,  0.0f,  0.0f,
+                    -0.169261f,  0.077790f,  1.035076f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                16,
+                new[]
+                {
+                    0.259411f,  0.110296f,  -0.006276f,  0.0f,  0.0f,
+                    0.923008f,  0.804340f,  -0.034346f,  0.0f,  0.0f,
+                   -0.182420f,  0.085364f,  1.040622f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                18,
+                new[]
+                {
+                    0.203876f,  0.112975f,  -0.005222f,  0.0f,  0.0f,
+                    0.990338f,  0.794542f,  -0.041043f,  0.0f,  0.0f,
+                    -0.194214f,  0.092483f,  1.046265f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                20,
+                new[]
+                {
+                    0.152286f,  0.114503f,  -0.003882f,  0.0f,  0.0f,
+                    1.052583f,  0.786281f,  -0.048116f,  0.0f,  0.0f,
+                    -0.204868f,  0.099216f,  1.051998f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+
+        };
+        #endregion
+
 
         #endregion
 
@@ -164,6 +296,24 @@ namespace EqSoft
             RefreshImage();
         }
 
+        private void OnPlus()
+        {
+            waveLenghtSeverity += 2;
+            if (waveLenghtSeverity >= 20)
+                waveLenghtSeverity = 20;
+
+            SetPreviousFilter(false);
+        }
+
+        private void OnMinus()
+        {
+            waveLenghtSeverity -= 2;
+            if (waveLenghtSeverity <= 0)
+                waveLenghtSeverity = 0;
+
+            SetPreviousFilter(false);
+        }
+
         private void SetAchromatopsia()
         {
             SetScreenDefault();
@@ -185,27 +335,27 @@ namespace EqSoft
             NativeMethods.MagSetFullscreenColorEffect(ref magEffectInvert);
         }
 
-        private void SetPreviousFilter()
+        private void SetPreviousFilter(bool resetSeverity = true)
         {
             switch(previousFilter)
             {
                 case EpreviousFilter.deuteranomaly:
-                    SetDeuteronormaly();
+                    SetDeuteronormaly(resetSeverity);
                     break;
                 case EpreviousFilter.protanomaly:
-                    SetProtanomaly();
+                    SetProtanomaly(resetSeverity);
                     break;
                 case EpreviousFilter.protanopia:
-                    SetProtanopia();
+                    SetProtanopia(resetSeverity);
                     break;
                 case EpreviousFilter.deuteranopia:
-                    SetDeuteranopia();
+                    SetDeuteranopia(resetSeverity);
                     break;
                 case EpreviousFilter.tritanopia:
-                    SetTritanopia();
+                    SetTritanopia(resetSeverity);
                     break;
                 case EpreviousFilter.tritanomaly:
-                    SetTritanomaly();
+                    SetTritanomaly(resetSeverity);
                     break;
                 case EpreviousFilter.achromatopsia:
                     SetAchromatopsia();
@@ -401,7 +551,7 @@ namespace EqSoft
             Bitmap ResizedBitmap = new Bitmap(memoryImage, bitmapSize.Width / 2, bitmapSize.Height/2);
 
             ResizedBitmap.Save(secondImagePath);
-            SetPreviousFilter();
+            SetPreviousFilter(false);
             MergeTwoImages();
         } 
         
@@ -437,8 +587,11 @@ namespace EqSoft
         }
 
         //https://pl.wikipedia.org/wiki/Deuteranomalia
-        private void SetDeuteronormaly()
+        private void SetDeuteronormaly(bool resetSeverity = true)
         {
+            if (resetSeverity)
+                waveLenghtSeverity = 10;
+
             SetScreenDefault();
             previousFilter = EpreviousFilter.deuteranomaly;
             float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f, multiplicator = 1;
@@ -459,26 +612,20 @@ namespace EqSoft
         }
 
         //https://pl.wikipedia.org/wiki/Protanopia
-        private void SetProtanomaly()
+        private void SetProtanomaly(bool resetSeverity = true)
         {
+            if (resetSeverity)
+                waveLenghtSeverity = 10;
+
             SetScreenDefault();
             previousFilter = EpreviousFilter.protanomaly;
-            float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
+
+            float[] protanomalyMatrix = null;
+            protanomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out protanomalyMatrix);
+
             var magEffectInvert = new NativeMethods.MAGCOLOREFFECT
             {
-                transform = new[]
-                {
-                    //0.5f,  0,   0,  0.0f,  0.0f,
-                    //0.5f,  1,   0,  0.0f,  0.0f,
-                    //0,  0,   1,  0.0f,  0.0f,
-                    //0,  0,   0,  0.0f,  0.0f,
-                    //0,  0,   0,  0.0f,  0.0f
-                    0.5f,  0,   0,  0.0f,  0.0f,
-                    0.5f,  1,   0,  0.0f,  0.0f,
-                    0,     0,   1,  0.0f,  0.0f,
-                    0,     0,   0,  0.0f,  0.0f,
-                    0,     0,   0,  0.0f,  0.0f
-                }
+                transform = protanomalyMatrix
             };
 
             NativeMethods.MagInitialize();
@@ -486,29 +633,31 @@ namespace EqSoft
         }
 
 
-        private void SetProtanopia()
+        private void SetProtanopia(bool resetSeverity = true)
         {
+            if (resetSeverity)
+                waveLenghtSeverity = 20;
+
             SetScreenDefault();
             previousFilter = EpreviousFilter.protanopia;
-            float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
+
+            float[] protanomalyMatrix = null;
+            protanomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out protanomalyMatrix);
+
             var magEffectInvert = new NativeMethods.MAGCOLOREFFECT
             {
-                transform = new[]
-                {
-                    0,  0,   0,  0.0f,  0.0f,
-                    1,  1,   0,  0.0f,  0.0f,
-                    0,  0,   1,  0.0f,  0.0f,
-                    0,  0,   0,  0.0f,  0.0f,
-                    0,  0,   0,  0.0f,  0.0f
-                }
+                transform = protanomalyMatrix
             };
 
             NativeMethods.MagInitialize();
             NativeMethods.MagSetFullscreenColorEffect(ref magEffectInvert);
         }
 
-        private void SetDeuteranopia()
+        private void SetDeuteranopia(bool resetSeverity = true)
         {
+            if (resetSeverity)
+                waveLenghtSeverity = 20;
+
             SetScreenDefault();
             previousFilter = EpreviousFilter.deuteranopia;
             float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
@@ -528,8 +677,11 @@ namespace EqSoft
             NativeMethods.MagSetFullscreenColorEffect(ref magEffectInvert);
         }
 
-        private void SetTritanopia()
+        private void SetTritanopia(bool resetSeverity = true)
         {
+            if (resetSeverity)
+                waveLenghtSeverity = 20;
+
             SetScreenDefault();
             previousFilter = EpreviousFilter.tritanopia;
             float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
@@ -549,8 +701,11 @@ namespace EqSoft
             NativeMethods.MagSetFullscreenColorEffect(ref magEffectInvert);
         }
 
-        private void SetTritanomaly()
+        private void SetTritanomaly(bool resetSeverity = true)
         {
+            if (resetSeverity)
+                waveLenghtSeverity = 10;
+
             SetScreenDefault();
             previousFilter = EpreviousFilter.tritanomaly;
             float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
@@ -612,6 +767,8 @@ namespace EqSoft
             F8Key = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.F8, this);
             F9Key = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.F9, this);
             PrintScreenKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.PrintScreen, this);
+            PlusKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.Oemplus, this);
+            MinusKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.OemMinus, this);
         }
 
         private void ToggleHotkeys(bool enabled)
@@ -628,6 +785,8 @@ namespace EqSoft
                 F8Key.Register(F8Id);
                 F9Key.Register(F9Id);
                 PrintScreenKey.Register(PrintScreenId);
+                PlusKey.Register(PlusId);
+                MinusKey.Register(MinusId);
             }
             else
             {
@@ -640,6 +799,8 @@ namespace EqSoft
                 F8Key.Unregiser(F8Id);
                 F9Key.Unregiser(F9Id);
                 PrintScreenKey.Unregiser(PrintScreenId);
+                PlusKey.Unregiser(PlusId);
+                MinusKey.Unregiser(MinusId);
             }
         }
 
@@ -669,6 +830,11 @@ namespace EqSoft
                     OnF9Action();
                 else if (id == PrintScreenId)
                     OnPrintScreen();
+                else if (id == PlusId)
+                    OnPlus();
+                else if (id == MinusId)
+                    OnMinus();
+
             }
             base.WndProc(ref m);
         }
