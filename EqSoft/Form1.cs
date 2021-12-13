@@ -348,6 +348,11 @@ namespace EqSoft
         {
         }
 
+        private void pictureBox35_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void setCustomFilterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenCustomFilterForm();
