@@ -40,7 +40,6 @@
             this.setScreenshotPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openScreenshotFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setCustomFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.patronsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
@@ -198,7 +197,6 @@
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsToolStripMenuItem,
-            this.patronsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.MinimumSize = new System.Drawing.Size(950, 25);
@@ -239,15 +237,6 @@
             this.setCustomFilterToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.setCustomFilterToolStripMenuItem.Text = "Set Custom Filter";
             this.setCustomFilterToolStripMenuItem.Click += new System.EventHandler(this.setCustomFilterToolStripMenuItem_Click);
-            // 
-            // patronsToolStripMenuItem
-            // 
-            this.patronsToolStripMenuItem.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.patronsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this.patronsToolStripMenuItem.Name = "patronsToolStripMenuItem";
-            this.patronsToolStripMenuItem.Size = new System.Drawing.Size(76, 21);
-            this.patronsToolStripMenuItem.Text = "Supporters";
-            this.patronsToolStripMenuItem.Click += new System.EventHandler(this.patronsToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -837,7 +826,6 @@
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox Baner;
         private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem patronsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setScreenshotPathToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openScreenshotFolderToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox19;

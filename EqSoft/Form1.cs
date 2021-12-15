@@ -164,6 +164,133 @@ namespace EqSoft
 
         };
         #endregion
+        private Dictionary<int, float[]> dueteranomalyMatrixDictionary = new Dictionary<int, float[]>
+        #region
+        {
+            {
+                0,
+                new[]
+                {
+                    1,  0,   0,  0.0f,  0.0f,
+                    0,  1,   0,  0.0f,  0.0f,
+                    0,  0,   1,  0.0f,  0.0f,
+                    0,  0,   0,  0.0f,  0.0f,
+                    0,  0,   0,  0.0f,  0.0f
+                }
+            },
+            {
+                2,
+                new[]
+                {
+                    0.866435f, 0.049567f,  -0.003453f, 0.0f,  0.0f,
+                    0.177704f, 0.939063f,   0.007233f, 0.0f,  0.0f,
+                    -0.044139f, 0.011370f,  0.996220f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                4,
+                new[]
+                {
+                    0.760729f,  0.090568f,  -0.006027f,   0.0f,  0.0f,
+                    0.319078f,  0.889315f,   0.013325f,  0.0f,  0.0f,
+                    -0.079807f,  0.020117f,  0.992702f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                6,
+                new[]
+                {
+                    0.675425f, 0.125303f,   -0.007950f, 0.0f,  0.0f,
+                    0.433850f,  0.847755f,  0.018572f, 0.0f,  0.0f,
+                    -0.109275f,  0.026942f,  0.989378f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                8,
+                new[]
+                {
+                    0.605511f,  0.155318f,  -0.009376f,  0.0f,  0.0f,
+                    0.528560f,  0.812366f,  0.023176f,  0.0f,  0.0f,
+                    -0.134071f,  0.032316f,  0.986200f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                10,
+                new[]
+                {
+                    0.547494f,  0.181692f,  -0.010410f,  0.0f,  0.0f,
+                    0.607765f,  0.781742f,  0.027275f,  0.0f,  0.0f,
+                    -0.155259f,  0.036566f,  0.983136f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                12,
+                new[]
+                {
+                    0.498864f,  0.205199f,  -0.011131f,  0.0f,  0.0f,
+                    0.674741f,  0.754872f,  0.030969f,  0.0f,  0.0f,
+                    -0.173604f,  0.039929f,  0.980162f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                14,
+                new[]
+                {
+                    0.457771f,  0.226409f,  -0.011595f,  0.0f,  0.0f,
+                    0.731899f,  0.731012f,  0.034333f,  0.0f,  0.0f,
+                    -0.189670f,  0.042579f,  0.977261f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                16,
+                new[]
+                {
+                    0.422823f,  0.245752f,  -0.011843f,  0.0f,  0.0f,
+                    0.781057f,  0.709602f,  0.037423f,  0.0f,  0.0f,
+                   -0.203881f,  0.044646f,  0.974421f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                18,
+                new[]
+                {
+                    0.392952f,  0.263559f,  -0.011910f,  0.0f,  0.0f,
+                    0.823610f,  0.690210f,  0.040281f,  0.0f,  0.0f,
+                    -0.216562f,  0.046232f,  0.971630f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                20,
+                new[]
+                {
+                    0.367322f,  0.280085f,  -0.011820f,  0.0f,  0.0f,
+                    0.860646f,  0.672501f,  0.042940f,  0.0f,  0.0f,
+                    -0.227968f,  0.047413f,  0.968881f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+
+        };
+        #endregion
 
 
         #endregion
@@ -593,18 +720,15 @@ namespace EqSoft
                 waveLenghtSeverity = 10;
 
             SetScreenDefault();
-            previousFilter = EpreviousFilter.deuteranomaly;
-            float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f, multiplicator = 1;
+            previousFilter = EpreviousFilter.deuteranopia;
+
+            float[] deuteranomalyMatrix = null;
+            dueteranomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out deuteranomalyMatrix);
+
+
             var magEffectInvert = new NativeMethods.MAGCOLOREFFECT
             {
-                transform = new[]
-                {
-                    1,    0.5f,    0,  0,  0,
-                    0,    0.5f,    0,  0,  0,
-                    0,    0,    1,  0,  0,
-                    0,    0,    0,  0,  0,
-                    0,    0,    0,  0,  0.0f
-                }
+                transform = deuteranomalyMatrix
             };
 
             NativeMethods.MagInitialize();
@@ -660,17 +784,14 @@ namespace EqSoft
 
             SetScreenDefault();
             previousFilter = EpreviousFilter.deuteranopia;
-            float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
+
+            float[] deuteranomalyMatrix = null;
+            dueteranomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out deuteranomalyMatrix);
+
+
             var magEffectInvert = new NativeMethods.MAGCOLOREFFECT
             {
-                transform = new[]
-                {
-                    1,         1,       0,      0,  0.0f,
-                    0,         0,       0,      0,  0.0f,
-                    0,         0,       1,      0,  0.0f,
-                    0,         0,       0,      0,  0.0f,
-                    0,         0,       0,      0,  0.0f
-                }
+                transform = deuteranomalyMatrix
             };
 
             NativeMethods.MagInitialize();
