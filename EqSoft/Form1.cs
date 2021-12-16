@@ -291,6 +291,133 @@ namespace EqSoft
 
         };
         #endregion
+        private Dictionary<int, float[]> tritanomalyMatrixDictionary = new Dictionary<int, float[]>
+        #region
+        {
+            {
+                0,
+                new[]
+                {
+                    1,  0,   0,  0.0f,  0.0f,
+                    0,  1,   0,  0.0f,  0.0f,
+                    0,  0,   1,  0.0f,  0.0f,
+                    0,  0,   0,  0.0f,  0.0f,
+                    0,  0,   0,  0.0f,  0.0f
+                }
+            },
+            {
+                2,
+                new[]
+                {
+                    0.926670f, 0.021191f,  0.008437f, 0.0f,  0.0f,
+                    0.092514f, 0.964503f,   0.054813f, 0.0f,  0.0f,
+                    -0.019184f, 0.014306f,  0.936750f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                4,
+                new[]
+                {
+                    0.895720f,  0.029997f,  0.013027f,   0.0f,  0.0f,
+                    0.133330f,  0.945400f,   0.104707f,  0.0f,  0.0f,
+                    -0.029050f,  0.024603f,  0.882266f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                6,
+                new[]
+                {
+                    0.905871f, 0.026856f,   0.013410f, 0.0f,  0.0f,
+                    0.127791f,  0.941251f,  0.148296f, 0.0f,  0.0f,
+                    -0.033662f,  0.031893f,  0.838294f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                8,
+                new[]
+                {
+                    0.948035f,  0.014364f,  0.010853f,  0.0f,  0.0f,
+                    0.089490f,  0.946792f,  0.193991f,  0.0f,  0.0f,
+                    -0.037526f,  0.038844f,  0.795156f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                10,
+                new[]
+                {
+                    1.017277f,  -0.006113f,  0.006379f,  0.0f,  0.0f,
+                    0.027029f,  0.958479f,  0.248708f,  0.0f,  0.0f,
+                    -0.044306f,  0.047634f,  0.744913f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                12,
+                new[]
+                {
+                    1.104996f,  -0.032137f,  0.001336f,  0.0f,  0.0f,
+                    -0.046633f,  0.971635f,  0.317922f,  0.0f,  0.0f,
+                    -0.058363f,  0.060503f,  0.680742f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                14,
+                new[]
+                {
+                    1.193214f,  -0.058496f,  -0.002346f,  0.0f,  0.0f,
+                    -0.109812f,  0.979410f,  0.403492f,  0.0f,  0.0f,
+                    -0.083402f,  0.079086f,  0.598854f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                16,
+                new[]
+                {
+                    1.257728f,  -0.078003f,  -0.003316f,  0.0f,  0.0f,
+                    -0.139648f,  0.975409f,  0.501214f,  0.0f,  0.0f,
+                   -0.118081f,  0.102594f,  0.502102f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                18,
+                new[]
+                {
+                    1.278864f,  -0.084748f,  -0.000989f,  0.0f,  0.0f,
+                    -0.125333f,  0.957674f,  0.601151f,  0.0f,  0.0f,
+                    -0.153531f,  0.127074f,  0.399838f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+            {
+                20,
+                new[]
+                {
+                    1.255528f,  -0.078411f,  0.004733f,  0.0f,  0.0f,
+                    -0.076749f,  0.930809f,  0.691367f,  0.0f,  0.0f,
+                    -0.178779f,  0.147602f,  0.303900f, 0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f,
+                     0.0f,       0.0f,        0.0f,      0.0f,  0.0f
+                }
+            },
+
+        };
+        #endregion
 
 
         #endregion
@@ -716,6 +843,12 @@ namespace EqSoft
         //https://pl.wikipedia.org/wiki/Deuteranomalia
         private void SetDeuteronormaly(bool resetSeverity = true)
         {
+            if (waveLenghtSeverity == 20)
+            {
+                SetDeuteranopia();
+                return;
+            }
+
             if (resetSeverity)
                 waveLenghtSeverity = 10;
 
@@ -738,6 +871,12 @@ namespace EqSoft
         //https://pl.wikipedia.org/wiki/Protanopia
         private void SetProtanomaly(bool resetSeverity = true)
         {
+            if (waveLenghtSeverity == 20)
+            {
+                SetProtanopia();
+                return;
+            }
+
             if (resetSeverity)
                 waveLenghtSeverity = 10;
 
@@ -759,6 +898,12 @@ namespace EqSoft
 
         private void SetProtanopia(bool resetSeverity = true)
         {
+            if (waveLenghtSeverity == 10)
+            {
+                SetProtanomaly();
+                return;
+            }
+
             if (resetSeverity)
                 waveLenghtSeverity = 20;
 
@@ -779,6 +924,12 @@ namespace EqSoft
 
         private void SetDeuteranopia(bool resetSeverity = true)
         {
+            if (waveLenghtSeverity == 10)
+            {
+                SetDeuteronormaly();
+                return;
+            }
+
             if (resetSeverity)
                 waveLenghtSeverity = 20;
 
@@ -800,22 +951,25 @@ namespace EqSoft
 
         private void SetTritanopia(bool resetSeverity = true)
         {
+            Console.WriteLine(waveLenghtSeverity);
+            if (waveLenghtSeverity == 10)
+            {
+                SetTritanomaly();
+                return;
+            }
+
             if (resetSeverity)
                 waveLenghtSeverity = 20;
 
             SetScreenDefault();
             previousFilter = EpreviousFilter.tritanopia;
-            float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
+
+            float[] triranomalyMatrix = null;
+            tritanomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out triranomalyMatrix);
+
             var magEffectInvert = new NativeMethods.MAGCOLOREFFECT
             {
-                transform = new[]
-                {
-                    1,         0,       0,      0,  0.0f,
-                    0,         1,       1,      0,  0.0f,
-                    0,         0,       0,      0,  0.0f,
-                    0,         0,       0,      0,  0.0f,
-                    0,         0,       0,      0,  0.0f
-                }
+                transform = triranomalyMatrix
             };
 
             NativeMethods.MagInitialize();
@@ -824,22 +978,24 @@ namespace EqSoft
 
         private void SetTritanomaly(bool resetSeverity = true)
         {
+            if(waveLenghtSeverity == 20)
+            {
+                SetTritanopia();
+                return;
+            }
+
             if (resetSeverity)
                 waveLenghtSeverity = 10;
 
             SetScreenDefault();
-            previousFilter = EpreviousFilter.tritanomaly;
-            float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
+            previousFilter = EpreviousFilter.tritanopia;
+
+            float[] triranomalyMatrix = null;
+            tritanomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out triranomalyMatrix);
+
             var magEffectInvert = new NativeMethods.MAGCOLOREFFECT
             {
-                transform = new[]
-                {
-                    1,         0,       0,      0,  0.0f,
-                    0,         1,       0.5f,   0,  0.0f,
-                    0,         0,       0.5f,   0,  0.0f,
-                    0,         0,       0,      0,  0.0f,
-                    0,         0,       0,      0,  0.0f
-                }
+                transform = triranomalyMatrix
             };
 
             NativeMethods.MagInitialize();
