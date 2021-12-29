@@ -774,14 +774,15 @@ namespace EqSoft
             String processName = System.AppDomain.CurrentDomain.FriendlyName;
             for(int i = 0; i < 500; i++)
             {
-                firstImageName = previousFilter.ToString() + " filter " + i + "01.jpg";
+                firstImageName = previousFilter.ToString() + " filter " + "severity " + waveLenghtSeverity + "nm " + i + ".jpg";
                 firstImageName.Replace('.', '~');
                 if (!File.Exists(printImagePath + @"/" + firstImageName))
                 {
-                    secongImageName = previousFilter.ToString() + " filter " + i + "02.jpg";
+                    secongImageName = previousFilter.ToString() + " filter " + i + ".jpg";
                     break;
                 }
             }
+            Console.WriteLine(firstImageName);
             Graphics myGraphics = this.CreateGraphics();
             Size bitmapSize = new Size(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
             Bitmap memoryImage = new Bitmap(bitmapSize.Width, bitmapSize.Height, myGraphics);
