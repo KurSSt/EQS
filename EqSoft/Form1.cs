@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,13 +28,20 @@ namespace EqSoft
 
         private Hotkeys.GlobalHotkey F1Key, F2Key, F3Key, F4Key, F5Key, F6Key, F7Key, F8Key, F9Key, PrintScreenKey, PlusKey, MinusKey;
         private Int32 F1Id = 1, F2Id = 2, F3Id = 3, F4Id = 4, F5Id = 5, F6Id = 6, F7Id = 7, F8Id = 8, F9Id = 9, PrintScreenId = 13, PlusId = 10, MinusId = 11;
-        private EpreviousFilter previousFilter;
+        private EFilterTypes previousFilter;
         private string printImagePath = Application.StartupPath;
         string optionsPath = Application.StartupPath + @"\options.txt";
         public Color RedCustomColorValue, GreenCustomColorValue, BlueCustomColorValue;
         PictureBox[] screensPictureBox = new PictureBox[6];
         Form2 customFilter;
         int waveLenghtSeverity = 0;
+        private bool drawingString;
+        private bool drawingStringOptionEnabled;
+
+        [DllImport("User32.dll")]
+        public static extern IntPtr GetDC(IntPtr hwnd);
+        [DllImport("User32.dll")]
+        public static extern void ReleaseDC(IntPtr hwnd, IntPtr dc);
 
 
 
@@ -571,7 +579,8 @@ namespace EqSoft
         private void SetAchromatopsia()
         {
             SetScreenDefault();
-            previousFilter = EpreviousFilter.achromatopsia;
+            previousFilter = EFilterTypes.achromatopsia;
+            AllignProperText(EFilterTypes.achromatopsia, waveLenghtSeverity);
             float redScale = 0.2126f, greenScale = 0.7152f, blueScale = 0.0722f;
             var magEffectInvert = new NativeMethods.MAGCOLOREFFECT
             {
@@ -593,31 +602,31 @@ namespace EqSoft
         {
             switch(previousFilter)
             {
-                case EpreviousFilter.deuteranomaly:
+                case EFilterTypes.deuteranomaly:
                     SetDeuteronormaly(resetSeverity);
                     break;
-                case EpreviousFilter.protanomaly:
+                case EFilterTypes.protanomaly:
                     SetProtanomaly(resetSeverity);
                     break;
-                case EpreviousFilter.protanopia:
+                case EFilterTypes.protanopia:
                     SetProtanopia(resetSeverity);
                     break;
-                case EpreviousFilter.deuteranopia:
+                case EFilterTypes.deuteranopia:
                     SetDeuteranopia(resetSeverity);
                     break;
-                case EpreviousFilter.tritanopia:
+                case EFilterTypes.tritanopia:
                     SetTritanopia(resetSeverity);
                     break;
-                case EpreviousFilter.tritanomaly:
+                case EFilterTypes.tritanomaly:
                     SetTritanomaly(resetSeverity);
                     break;
-                case EpreviousFilter.achromatopsia:
+                case EFilterTypes.achromatopsia:
                     SetAchromatopsia();
                     break;
-                case EpreviousFilter.normal:
+                case EFilterTypes.normal:
                     SetScreenDefault();
                     break;
-                case EpreviousFilter.custom:
+                case EFilterTypes.custom:
                     SetCustomScreen();
                     break;
             }
@@ -782,7 +791,6 @@ namespace EqSoft
                     break;
                 }
             }
-            Console.WriteLine(firstImageName);
             Graphics myGraphics = this.CreateGraphics();
             Size bitmapSize = new Size(System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width, System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height);
             Bitmap memoryImage = new Bitmap(bitmapSize.Width, bitmapSize.Height, myGraphics);
@@ -844,17 +852,18 @@ namespace EqSoft
         //https://pl.wikipedia.org/wiki/Deuteranomalia
         private void SetDeuteronormaly(bool resetSeverity = true)
         {
+            if (resetSeverity)
+                waveLenghtSeverity = 10;
+
             if (waveLenghtSeverity == 20)
             {
                 SetDeuteranopia();
                 return;
             }
 
-            if (resetSeverity)
-                waveLenghtSeverity = 10;
-
             SetScreenDefault();
-            previousFilter = EpreviousFilter.deuteranopia;
+            previousFilter = EFilterTypes.deuteranomaly;
+            AllignProperText(EFilterTypes.deuteranomaly, waveLenghtSeverity);
 
             float[] deuteranomalyMatrix = null;
             dueteranomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out deuteranomalyMatrix);
@@ -872,17 +881,18 @@ namespace EqSoft
         //https://pl.wikipedia.org/wiki/Protanopia
         private void SetProtanomaly(bool resetSeverity = true)
         {
+            if (resetSeverity)
+                waveLenghtSeverity = 10;
+
             if (waveLenghtSeverity == 20)
             {
                 SetProtanopia();
                 return;
             }
 
-            if (resetSeverity)
-                waveLenghtSeverity = 10;
-
             SetScreenDefault();
-            previousFilter = EpreviousFilter.protanomaly;
+            previousFilter = EFilterTypes.protanomaly;
+            AllignProperText(EFilterTypes.protanomaly, waveLenghtSeverity);
 
             float[] protanomalyMatrix = null;
             protanomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out protanomalyMatrix);
@@ -896,20 +906,116 @@ namespace EqSoft
             NativeMethods.MagSetFullscreenColorEffect(ref magEffectInvert);
         }
 
+        private void DrawStringThread(string textToDraw)
+        {
+            while(drawingString)
+            { 
+                IntPtr desktopPtr = GetDC(IntPtr.Zero);
+                Graphics g = Graphics.FromHdc(desktopPtr);
+
+                Font font = new Font(FontFamily.GenericSerif, 30, FontStyle.Bold, GraphicsUnit.Pixel);
+                PointF point = new PointF(0, 0);
+                Color color = Color.FromArgb(50, Color.Red);
+                SolidBrush myBrush = new SolidBrush(Color.Red);
+                g.DrawString(textToDraw, font, myBrush, point);
+                Thread.Sleep(500);
+                g.Dispose();
+            }
+
+            KillThread(textThread);
+        }
+
+        private void KillThread(Thread threadToKill)
+        {
+            if(threadToKill != null && threadToKill.IsAlive)
+            {
+                threadToKill.Abort();
+                threadToKill = null;
+            }
+        }
+
+        public void DrawString(string textToDraw)
+        {
+            drawingString = true;
+            KillThread(textThread);
+            textThread = new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                DrawStringThread(textToDraw);
+            });
+            textThread.Start();
+        }
+
+
+        private void StopDrawingString()
+        {
+            drawingString = false;
+        }
+
+        Thread textThread;
+
+        private void AllignProperText(EFilterTypes filterType, int severity)
+        {
+
+            string stringToDraw = filterType + " severity: " + severity + "nM";
+
+
+            
+            switch(filterType)
+            {
+                case EFilterTypes.protanopia:
+
+                    break;
+
+                case EFilterTypes.protanomaly:
+
+                    break;
+                case EFilterTypes.deuteranopia:
+
+                    break;
+
+                case EFilterTypes.deuteranomaly:
+
+                    break;
+
+                case EFilterTypes.tritanopia:
+
+                    break;
+
+                case EFilterTypes.tritanomaly:
+
+                    break;
+
+                case EFilterTypes.normal:
+                    stringToDraw = "normal vision";
+
+                    break;
+
+                case EFilterTypes.achromatopsia:
+                    stringToDraw = filterType.ToString();
+
+                    break;
+
+            }
+
+            DrawString(stringToDraw);
+
+        }
 
         private void SetProtanopia(bool resetSeverity = true)
         {
-            if (waveLenghtSeverity == 10)
-            {
-                SetProtanomaly();
-                return;
-            }
-
             if (resetSeverity)
                 waveLenghtSeverity = 20;
 
+            if (waveLenghtSeverity < 20)
+            {
+                SetProtanomaly(false);
+                return;
+            }
+
             SetScreenDefault();
-            previousFilter = EpreviousFilter.protanopia;
+            previousFilter = EFilterTypes.protanopia;
+            AllignProperText(EFilterTypes.protanopia, waveLenghtSeverity);
 
             float[] protanomalyMatrix = null;
             protanomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out protanomalyMatrix);
@@ -925,17 +1031,18 @@ namespace EqSoft
 
         private void SetDeuteranopia(bool resetSeverity = true)
         {
-            if (waveLenghtSeverity == 10)
-            {
-                SetDeuteronormaly();
-                return;
-            }
-
             if (resetSeverity)
                 waveLenghtSeverity = 20;
 
+            if (waveLenghtSeverity < 20)
+            {
+                SetDeuteronormaly(false);
+                return;
+            }
+
             SetScreenDefault();
-            previousFilter = EpreviousFilter.deuteranopia;
+            previousFilter = EFilterTypes.deuteranopia;
+            AllignProperText(EFilterTypes.deuteranopia, waveLenghtSeverity);
 
             float[] deuteranomalyMatrix = null;
             dueteranomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out deuteranomalyMatrix);
@@ -952,18 +1059,18 @@ namespace EqSoft
 
         private void SetTritanopia(bool resetSeverity = true)
         {
-            Console.WriteLine(waveLenghtSeverity);
-            if (waveLenghtSeverity == 10)
-            {
-                SetTritanomaly();
-                return;
-            }
-
             if (resetSeverity)
                 waveLenghtSeverity = 20;
 
+            if (waveLenghtSeverity < 20)
+            {
+                SetTritanomaly(false);
+                return;
+            }
+
             SetScreenDefault();
-            previousFilter = EpreviousFilter.tritanopia;
+            previousFilter = EFilterTypes.tritanopia;
+            AllignProperText(EFilterTypes.tritanopia, waveLenghtSeverity);
 
             float[] triranomalyMatrix = null;
             tritanomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out triranomalyMatrix);
@@ -979,17 +1086,18 @@ namespace EqSoft
 
         private void SetTritanomaly(bool resetSeverity = true)
         {
-            if(waveLenghtSeverity == 20)
+            if (resetSeverity)
+                waveLenghtSeverity = 10;
+
+            if (waveLenghtSeverity == 20)
             {
                 SetTritanopia();
                 return;
             }
 
-            if (resetSeverity)
-                waveLenghtSeverity = 10;
-
             SetScreenDefault();
-            previousFilter = EpreviousFilter.tritanopia;
+            previousFilter = EFilterTypes.tritanopia;
+            AllignProperText(EFilterTypes.tritanomaly, waveLenghtSeverity);
 
             float[] triranomalyMatrix = null;
             tritanomalyMatrixDictionary.TryGetValue(waveLenghtSeverity, out triranomalyMatrix);
@@ -1005,14 +1113,15 @@ namespace EqSoft
 
         public void SetScreenDefault()
         {
-            previousFilter = EpreviousFilter.normal;
+            previousFilter = EFilterTypes.normal;
+            AllignProperText(EFilterTypes.normal, waveLenghtSeverity);
             NativeMethods.MagUninitialize();
         }
 
         public void SetCustomScreen()
         {
             SetScreenDefault();
-            previousFilter = EpreviousFilter.custom;
+            previousFilter = EFilterTypes.custom;
             Color redColor = RedCustomColorValue;
             Color greenColor = GreenCustomColorValue;
             Color BlueColor = BlueCustomColorValue;
@@ -1117,7 +1226,7 @@ namespace EqSoft
             base.WndProc(ref m);
         }
 
-        private enum EpreviousFilter
+        private enum EFilterTypes
         {
             normal, deuteranomaly, protanomaly, protanopia, deuteranopia, tritanopia, tritanomaly, achromatopsia, custom
         }
