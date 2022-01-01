@@ -26,7 +26,7 @@ namespace EqSoft
 
         #region Private Variables
 
-        private Hotkeys.GlobalHotkey F1Key, F2Key, F3Key, F4Key, F5Key, F6Key, F7Key, F8Key, F9Key, PrintScreenKey, PlusKey, MinusKey;
+        private Hotkeys.GlobalHotkey F1Key, F2Key, F3Key, F4Key, F5Key, F6Key, F7Key, F8Key, F9Key, PrintScreenKey, PlusKey, MinusKey, PageUpKey, PageDownKey;
         private Int32 F1Id = 1, F2Id = 2, F3Id = 3, F4Id = 4, F5Id = 5, F6Id = 6, F7Id = 7, F8Id = 8, F9Id = 9, PrintScreenId = 13, PlusId = 10, MinusId = 11;
         private EFilterTypes previousFilter;
         private string printImagePath = Application.StartupPath;
@@ -918,7 +918,7 @@ namespace EqSoft
                 Color color = Color.FromArgb(50, Color.Red);
                 SolidBrush myBrush = new SolidBrush(Color.Red);
                 g.DrawString(textToDraw, font, myBrush, point);
-                Thread.Sleep(500);
+                Thread.Sleep(10);
                 g.Dispose();
             }
 
@@ -1156,6 +1156,8 @@ namespace EqSoft
             PrintScreenKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.PrintScreen, this);
             PlusKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.Oemplus, this);
             MinusKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.OemMinus, this);
+            PageUpKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.PageUp, this);
+            PageDownKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.PageDown, this);
         }
 
         private void ToggleHotkeys(bool enabled)
@@ -1174,6 +1176,8 @@ namespace EqSoft
                 PrintScreenKey.Register(PrintScreenId);
                 PlusKey.Register(PlusId);
                 MinusKey.Register(MinusId);
+                PageUpKey.Register(PlusId);
+                PageDownKey.Register(MinusId);
             }
             else
             {
@@ -1188,6 +1192,8 @@ namespace EqSoft
                 PrintScreenKey.Unregiser(PrintScreenId);
                 PlusKey.Unregiser(PlusId);
                 MinusKey.Unregiser(MinusId);
+                PageUpKey.Unregiser(PlusId);
+                PageDownKey.Unregiser(MinusId);
             }
         }
 
