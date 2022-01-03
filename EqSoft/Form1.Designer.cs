@@ -40,6 +40,9 @@
             this.setScreenshotPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openScreenshotFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setCustomFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
@@ -211,7 +214,8 @@
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setScreenshotPathToolStripMenuItem,
             this.openScreenshotFolderToolStripMenuItem,
-            this.setCustomFilterToolStripMenuItem});
+            this.setCustomFilterToolStripMenuItem,
+            this.toolStripMenuItem1});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
             this.optionsToolStripMenuItem.Text = "Options";
@@ -220,23 +224,49 @@
             // setScreenshotPathToolStripMenuItem
             // 
             this.setScreenshotPathToolStripMenuItem.Name = "setScreenshotPathToolStripMenuItem";
-            this.setScreenshotPathToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.setScreenshotPathToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.setScreenshotPathToolStripMenuItem.Text = "Set Screenshot Path";
             this.setScreenshotPathToolStripMenuItem.Click += new System.EventHandler(this.setScreenshotPathToolStripMenuItem_Click);
             // 
             // openScreenshotFolderToolStripMenuItem
             // 
             this.openScreenshotFolderToolStripMenuItem.Name = "openScreenshotFolderToolStripMenuItem";
-            this.openScreenshotFolderToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.openScreenshotFolderToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.openScreenshotFolderToolStripMenuItem.Text = "Open Screenshot Folder";
             this.openScreenshotFolderToolStripMenuItem.Click += new System.EventHandler(this.openScreenshotFolderToolStripMenuItem_Click);
             // 
             // setCustomFilterToolStripMenuItem
             // 
             this.setCustomFilterToolStripMenuItem.Name = "setCustomFilterToolStripMenuItem";
-            this.setCustomFilterToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.setCustomFilterToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
             this.setCustomFilterToolStripMenuItem.Text = "Set Custom Filter";
             this.setCustomFilterToolStripMenuItem.Click += new System.EventHandler(this.setCustomFilterToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripTextBox1,
+            this.toolStripMenuItem2});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(220, 22);
+            this.toolStripMenuItem1.Text = "Choose Process To Suspend";
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(130, 23);
+            this.toolStripTextBox1.Text = "Process To Suspend";
+            this.toolStripTextBox1.ToolTipText = "Process to suspend";
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click_1);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(190, 22);
+            this.toolStripMenuItem2.Text = "Confirm";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -868,6 +898,9 @@
         private System.Windows.Forms.ToolStripMenuItem setCustomFilterToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox35;
         private System.Windows.Forms.PictureBox pictureBox36;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }
 

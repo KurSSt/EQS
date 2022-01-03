@@ -26,8 +26,8 @@ namespace EqSoft
 
         #region Private Variables
 
-        private Hotkeys.GlobalHotkey F1Key, F2Key, F3Key, F4Key, F5Key, F6Key, F7Key, F8Key, F9Key, PrintScreenKey, PlusKey, MinusKey, PageUpKey, PageDownKey;
-        private Int32 F1Id = 1, F2Id = 2, F3Id = 3, F4Id = 4, F5Id = 5, F6Id = 6, F7Id = 7, F8Id = 8, F9Id = 9, PrintScreenId = 13, PlusId = 10, MinusId = 11;
+        private Hotkeys.GlobalHotkey F1Key, F2Key, F3Key, F4Key, F5Key, F6Key, F7Key, F8Key, F9Key, PrintScreenKey, PlusKey, MinusKey, PageUpKey, PageDownKey, HomeKey;
+        private Int32 F1Id = 1, F2Id = 2, F3Id = 3, F4Id = 4, F5Id = 5, F6Id = 6, F7Id = 7, F8Id = 8, F9Id = 9, PrintScreenId = 13, PlusId = 10, MinusId = 11, HomeId = 12;
         private EFilterTypes previousFilter;
         private string printImagePath = Application.StartupPath;
         string optionsPath = Application.StartupPath + @"\options.txt";
@@ -37,11 +37,35 @@ namespace EqSoft
         int waveLenghtSeverity = 0;
         private bool drawingString;
         private bool drawingStringOptionEnabled;
+        private bool processIsPaused;
+        string processName;
 
         [DllImport("User32.dll")]
         public static extern IntPtr GetDC(IntPtr hwnd);
         [DllImport("User32.dll")]
         public static extern void ReleaseDC(IntPtr hwnd, IntPtr dc);
+
+        public enum ThreadAccess : int
+        {
+            TERMINATE = (0x0001),
+            SUSPEND_RESUME = (0x0002),
+            GET_CONTEXT = (0x0008),
+            SET_CONTEXT = (0x0010),
+            SET_INFORMATION = (0x0020),
+            QUERY_INFORMATION = (0x0040),
+            SET_THREAD_TOKEN = (0x0080),
+            IMPERSONATE = (0x0100),
+            DIRECT_IMPERSONATION = (0x0200)
+        }
+
+        [DllImport("kernel32.dll")]
+        static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
+        [DllImport("kernel32.dll")]
+        static extern uint SuspendThread(IntPtr hThread);
+        [DllImport("kernel32.dll")]
+        static extern int ResumeThread(IntPtr hThread);
+        [DllImport("kernel32", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern bool CloseHandle(IntPtr handle);
 
 
 
@@ -576,6 +600,78 @@ namespace EqSoft
             SetPreviousFilter(false);
         }
 
+        private void OnHome()
+        {
+            TogglePauseProcess();
+        }
+
+        private void TogglePauseProcess()
+        {
+            if(processIsPaused)
+            {
+                processIsPaused = false;
+                ResumeProcess();
+            }
+            else
+            {
+                processIsPaused = true;
+                SuspendProcess();
+            }
+        }
+
+        private void ResumeProcess()
+        {
+            Console.WriteLine("Resume");
+            var processes = Process.GetProcessesByName(processName);
+
+            foreach (Process process in processes)
+            {
+                foreach (ProcessThread pT in process.Threads)
+                {
+                    if (process.ProcessName == string.Empty)
+                        return;
+
+                    IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)pT.Id);
+
+                    if (pOpenThread == IntPtr.Zero)
+                    {
+                        continue;
+                    }
+
+                    var suspendCount = 0;
+                    do
+                    {
+                        suspendCount = ResumeThread(pOpenThread);
+                    } while (suspendCount > 0);
+
+                    CloseHandle(pOpenThread);
+                }
+            }
+        }
+
+        private void SuspendProcess()
+        {
+            Console.WriteLine("Suspend");
+            var processes = Process.GetProcessesByName(processName);
+            
+            foreach (Process process in processes)
+            {
+                foreach (ProcessThread pT in process.Threads)
+                {
+                    IntPtr pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)pT.Id);
+
+                    if (pOpenThread == IntPtr.Zero)
+                    {
+                        continue;
+                    }
+
+                    SuspendThread(pOpenThread);
+
+                    CloseHandle(pOpenThread);
+                }
+            }
+        }
+
         private void SetAchromatopsia()
         {
             SetScreenDefault();
@@ -755,6 +851,21 @@ namespace EqSoft
         private void Screen_Click(object sender, EventArgs e)
         {
             OpenCustomFilterForm();
+        }
+
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            processName = toolStripTextBox1.Text;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            processName = toolStripTextBox1.Text;
+        }
+
+        private void toolStripTextBox1_Click_1(object sender, EventArgs e)
+        {
+
         }
 
         private void FQS_FormClosed(object sender, FormClosedEventArgs e)
@@ -1158,6 +1269,7 @@ namespace EqSoft
             MinusKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.OemMinus, this);
             PageUpKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.PageUp, this);
             PageDownKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.PageDown, this);
+            HomeKey = new Hotkeys.GlobalHotkey(Constants.NOMOD, Keys.Home, this);
         }
 
         private void ToggleHotkeys(bool enabled)
@@ -1178,6 +1290,7 @@ namespace EqSoft
                 MinusKey.Register(MinusId);
                 PageUpKey.Register(PlusId);
                 PageDownKey.Register(MinusId);
+                HomeKey.Register(HomeId);
             }
             else
             {
@@ -1194,6 +1307,7 @@ namespace EqSoft
                 MinusKey.Unregiser(MinusId);
                 PageUpKey.Unregiser(PlusId);
                 PageDownKey.Unregiser(MinusId);
+                HomeKey.Unregiser(HomeId);
             }
         }
 
@@ -1227,6 +1341,8 @@ namespace EqSoft
                     OnPlus();
                 else if (id == MinusId)
                     OnMinus();
+                else if (id == HomeId)
+                    OnHome();
 
             }
             base.WndProc(ref m);
