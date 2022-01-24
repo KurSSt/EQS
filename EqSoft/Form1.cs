@@ -1022,6 +1022,11 @@ namespace EqSoft
             while(drawingString)
             { 
                 IntPtr desktopPtr = GetDC(IntPtr.Zero);
+                if (desktopPtr == null || desktopPtr == IntPtr.Zero)
+                {
+                    return;
+                }
+                Console.WriteLine("desktopPtr: " + desktopPtr);
                 Graphics g = Graphics.FromHdc(desktopPtr);
 
                 Font font = new Font(FontFamily.GenericSerif, 30, FontStyle.Bold, GraphicsUnit.Pixel);
@@ -1029,8 +1034,8 @@ namespace EqSoft
                 Color color = Color.FromArgb(50, Color.Red);
                 SolidBrush myBrush = new SolidBrush(Color.Red);
                 g.DrawString(textToDraw, font, myBrush, point);
-                Thread.Sleep(10);
                 g.Dispose();
+                Thread.Sleep(10);
             }
 
             KillThread(textThread);

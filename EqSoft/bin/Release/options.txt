@@ -1,0 +1,1 @@
+1.Print Image Location = ^C:\Users\Admin\Videos\UndertaleTest^2. Red Color Custom Value = ^^3. Green Color Custom Value = ^^4. Blue Color Custom Value = ^
