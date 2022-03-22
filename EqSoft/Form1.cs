@@ -900,6 +900,16 @@ namespace EqSoft
             this.WindowState = FormWindowState.Minimized;
         }
 
+        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
+
+        private void minimizeToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
         private void FQS_FormClosed(object sender, FormClosedEventArgs e)
         {
         }

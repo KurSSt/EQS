@@ -7,7 +7,7 @@
     <ProjectGuid>{24238EA1-8A03-4C2E-8461-14F3FC5DFF3F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>EqSoft</RootNamespace>
-    <AssemblyName>EqSoft</AssemblyName>
+    <AssemblyName>GoodSight</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>goodsight_DVe_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -95,6 +95,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="goodsight_DVe_icon.ico" />
     <Content Include="Icon.ico" />
     <None Include="Resources\exit.png" />
   </ItemGroup>
