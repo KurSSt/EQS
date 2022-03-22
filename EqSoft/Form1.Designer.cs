@@ -38,6 +38,8 @@
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minimizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.protanopia = new System.Windows.Forms.Label();
@@ -84,8 +86,6 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minimizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox36)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox35)).BeginInit();
@@ -210,6 +210,30 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.exitToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.exitToolStripMenuItem.Image = global::EqSoft.Properties.Resources.exit;
+            this.exitToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 2, 13, 0);
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
+            // 
+            // minimizeToolStripMenuItem
+            // 
+            this.minimizeToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.minimizeToolStripMenuItem.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.minimizeToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.minimizeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("minimizeToolStripMenuItem.Image")));
+            this.minimizeToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 2, 3, 0);
+            this.minimizeToolStripMenuItem.Name = "minimizeToolStripMenuItem";
+            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
+            this.minimizeToolStripMenuItem.Text = "Minimize";
+            this.minimizeToolStripMenuItem.Click += new System.EventHandler(this.minimizeToolStripMenuItem_Click_1);
             // 
             // label1
             // 
@@ -569,7 +593,7 @@
             // 
             this.pictureBox24.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox24.BackColor = System.Drawing.Color.Black;
-            this.pictureBox24.Location = new System.Drawing.Point(736, 428);
+            this.pictureBox24.Location = new System.Drawing.Point(744, 428);
             this.pictureBox24.Name = "pictureBox24";
             this.pictureBox24.Size = new System.Drawing.Size(136, 134);
             this.pictureBox24.TabIndex = 33;
@@ -580,7 +604,7 @@
             // 
             this.pictureBox22.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox22.BackColor = System.Drawing.Color.Black;
-            this.pictureBox22.Location = new System.Drawing.Point(736, 293);
+            this.pictureBox22.Location = new System.Drawing.Point(744, 293);
             this.pictureBox22.Name = "pictureBox22";
             this.pictureBox22.Size = new System.Drawing.Size(136, 134);
             this.pictureBox22.TabIndex = 32;
@@ -591,7 +615,7 @@
             // 
             this.pictureBox20.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox20.BackColor = System.Drawing.Color.Black;
-            this.pictureBox20.Location = new System.Drawing.Point(322, 293);
+            this.pictureBox20.Location = new System.Drawing.Point(330, 293);
             this.pictureBox20.Name = "pictureBox20";
             this.pictureBox20.Size = new System.Drawing.Size(269, 269);
             this.pictureBox20.TabIndex = 31;
@@ -602,7 +626,7 @@
             // 
             this.pictureBox23.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox23.BackColor = System.Drawing.Color.Black;
-            this.pictureBox23.Location = new System.Drawing.Point(597, 428);
+            this.pictureBox23.Location = new System.Drawing.Point(605, 428);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(136, 134);
             this.pictureBox23.TabIndex = 29;
@@ -613,7 +637,7 @@
             // 
             this.pictureBox21.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pictureBox21.BackColor = System.Drawing.Color.Black;
-            this.pictureBox21.Location = new System.Drawing.Point(597, 293);
+            this.pictureBox21.Location = new System.Drawing.Point(605, 293);
             this.pictureBox21.Name = "pictureBox21";
             this.pictureBox21.Size = new System.Drawing.Size(136, 134);
             this.pictureBox21.TabIndex = 27;
@@ -624,7 +648,7 @@
             // 
             this.pictureBox19.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox19.BackColor = System.Drawing.Color.Black;
-            this.pictureBox19.Location = new System.Drawing.Point(47, 293);
+            this.pictureBox19.Location = new System.Drawing.Point(55, 293);
             this.pictureBox19.Name = "pictureBox19";
             this.pictureBox19.Size = new System.Drawing.Size(269, 269);
             this.pictureBox19.TabIndex = 25;
@@ -731,30 +755,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.exitToolStripMenuItem.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.exitToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.exitToolStripMenuItem.Image = global::EqSoft.Properties.Resources.exit;
-            this.exitToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 2, 13, 0);
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
-            this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click_1);
-            // 
-            // minimizeToolStripMenuItem
-            // 
-            this.minimizeToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.minimizeToolStripMenuItem.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.minimizeToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.minimizeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("minimizeToolStripMenuItem.Image")));
-            this.minimizeToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 2, 3, 0);
-            this.minimizeToolStripMenuItem.Name = "minimizeToolStripMenuItem";
-            this.minimizeToolStripMenuItem.Size = new System.Drawing.Size(28, 20);
-            this.minimizeToolStripMenuItem.Text = "Minimize";
-            this.minimizeToolStripMenuItem.Click += new System.EventHandler(this.minimizeToolStripMenuItem_Click_1);
             // 
             // FQS
             // 
