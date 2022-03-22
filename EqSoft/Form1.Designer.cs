@@ -810,10 +810,11 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(935, 650);
             this.Name = "FQS";
-            this.Text = "EQS";
+            this.Text = "GoodSight";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FQS_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FQS_MouseDown);
