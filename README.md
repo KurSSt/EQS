@@ -27,3 +27,5 @@ Adjustable Severity Levels: EQS provides the ability to shift the severity of co
 Scientifically-backed Accuracy: The color blindness matrixes within EQS are based on the publication "A Physiologically-based Model for Simulation of Color Vision Deficiency" by Gustavo M. Machado, Manuel M. Oliveira, and Leandro A. F. Fernandes, ensuring the simulations are scientifically accurate.
 
 With EQS, QA teams can guarantee that software is visually accessible to a broader audience, including those with varying degrees of color vision deficiency, ultimately improving usability and inclusivity.
+
+Warning: EQS Was tested on Windows 10 systems as it is using the windows libraries it might work diffrently after some period of time, please report an issue it you're seeing wrong behavior especially wrong matrix display where white color is shifted or to bright
