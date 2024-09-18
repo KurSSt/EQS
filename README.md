@@ -3,6 +3,7 @@ EQS: Color Blindness Testing & Simulation Tool
 EQS is a versatile and user-friendly tool designed specifically for QA teams to test software accessibility for users with various types of color blindness. It ensures that all visual elements in a program, whether a website, application, or game, remain accessible to individuals with color vision deficiencies.
 
 Key Features:
+
 Color Blindness Simulation: EQS simulates how individuals with different types of color blindness perceive the screen. It includes simulations for:
 
 Deuteranomaly
